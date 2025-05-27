@@ -55,7 +55,7 @@ export default function FAQPage() {
                       Do I need to create an account to watch anime?
                     </h3>
                     <p className="text-gray-300">
-                      No, you don't need an account to watch anime on
+                      No, you don&lsquo;t need an account to watch anime on
                       AnimeGrabber. However, creating a free account gives you
                       benefits like tracking your watch history, creating a
                       watchlist, and getting personalized recommendations.
@@ -121,10 +121,10 @@ export default function FAQPage() {
 
                   <div>
                     <h3 className="text-lg font-medium text-blue-500 mb-2">
-                      Can I request an anime that isn't available?
+                      Can I request an anime that isn&lsquo;t available?
                     </h3>
                     <p className="text-gray-300">
-                      Yes! We welcome requests for anime that aren't currently
+                      Yes! We welcome requests for anime that aren&lsquo;t currently
                       available on our site. You can submit requests through our
                       Contact Us page or join our Discord community to make
                       requests there.
@@ -147,7 +147,7 @@ export default function FAQPage() {
                     <p className="text-gray-300">
                       Buffering can occur due to your internet connection speed.
                       Try lowering the video quality in the player settings. If
-                      that doesn't help, try switching to a different server
+                      that doesn&lsquo;t help, try switching to a different server
                       using the server selection option.
                     </p>
                   </div>
@@ -182,7 +182,7 @@ export default function FAQPage() {
                     <p className="text-gray-300">
                       AnimeGrabber has minimal advertising compared to other
                       free anime sites. We only use ads to cover our server
-                      costs. If you're experiencing excessive ads, it might be
+                      costs. If you&lsquo;re experiencing excessive ads, it might be
                       due to browser extensions or other software on your
                       device.
                     </p>
@@ -202,8 +202,8 @@ export default function FAQPage() {
                       How do I create an account?
                     </h3>
                     <p className="text-gray-300">
-                      Click on the "Sign Up" button in the top right corner of
-                      the site. You'll need to provide a username, email
+                      Click on the &lsquo;Sign Up&lsquo; button in the top right corner of
+                      the site. You&lsquo;ll need to provide a username, email
                       address, and password. Alternatively, you can use social
                       login options if you prefer.
                     </p>
@@ -214,9 +214,9 @@ export default function FAQPage() {
                       I forgot my password. How do I reset it?
                     </h3>
                     <p className="text-gray-300">
-                      Click on the "Login" button, then select "Forgot
-                      Password". Enter the email address associated with your
-                      account, and we'll send you instructions to reset your
+                      Click on the &lsquo;Login&lsquo; button, then select &lsquo;Forgot
+                      Password&lsquo;. Enter the email address associated with your
+                      account, and we&lsquo;ll send you instructions to reset your
                       password.
                     </p>
                   </div>
@@ -226,7 +226,7 @@ export default function FAQPage() {
                       Can I sync my watch history across devices?
                     </h3>
                     <p className="text-gray-300">
-                      Yes, if you're logged into your AnimeGrabber account, your
+                      Yes, if you&lsquo;re logged into your AnimeGrabber account, your
                       watch history, bookmarks, and preferences will sync across
                       all your devices automatically.
                     </p>
@@ -238,7 +238,7 @@ export default function FAQPage() {
                     </h3>
                     <p className="text-gray-300">
                       To delete your account, go to your Account Settings and
-                      select the "Delete Account" option at the bottom of the
+                      select the &lsquo;Delete Account&lsquo; option at the bottom of the
                       page. Please note that this action is irreversible and
                       will delete all your data including watch history and
                       bookmarks.
@@ -253,7 +253,7 @@ export default function FAQPage() {
                   Still Have Questions?
                 </h2>
                 <p className="text-gray-300 mb-4">
-                  If you couldn't find an answer to your question, please don't
+                  If you couldn&lsquo;t find an answer to your question, please don&lsquo;t
                   hesitate to reach out to us.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">

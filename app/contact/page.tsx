@@ -21,8 +21,8 @@ export default function ContactPage() {
                 Get in Touch
               </h2>
               <p className="text-gray-300 mb-6">
-                We're here to help! If you have any questions, feedback, or need
-                assistance, please fill out the form below and we'll get back to
+                We&lsquo;re here to help! If you have any questions, feedback, or need
+                assistance, please fill out the form below and we&lsquo;ll get back to
                 you as soon as possible.
               </p>
 

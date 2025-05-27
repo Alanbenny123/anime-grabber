@@ -23,7 +23,7 @@ export default function DMCAPage() {
               <p className="mb-4">
                 AnimeGrabber respects the intellectual property rights of others
                 and expects its users to do the same. In accordance with the
-                Digital Millennium Copyright Act of 1998 ("DMCA"), we will
+                Digital Millennium Copyright Act of 1998 (&lsquo;DMCA&lsquo;), we will
                 respond expeditiously to claims of copyright infringement that
                 are reported to our designated copyright agent.
               </p>

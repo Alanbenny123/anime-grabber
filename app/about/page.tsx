@@ -42,10 +42,10 @@ export default function AboutPage() {
               What makes AnimeGrabber the best site to watch anime free online?
             </h2>
             <p className="text-gray-300 mb-6">
-              Before building AnimeGrabber, we've checked many other free anime
+              Before building AnimeGrabber, we&apos;ve checked many other free anime
               sites, and learnt from them. We only keep the good things and
               remove all the bad things from all the competitors, to put it in
-              our AnimeGrabber website. Let's see how we're so confident about
+              our AnimeGrabber website. Let&apos;s see how we&apos;re so confident about
               being the best site for anime streaming:
             </p>
 
@@ -81,7 +81,7 @@ export default function AboutPage() {
                 </span>{" "}
                 Compared to other anime streaming sites, the loading speed at
                 AnimeGrabber is faster. Downloading is just as easy as
-                streaming, you won't have any problem saving the videos to watch
+                streaming, you won&apos;t have any problem saving the videos to watch
                 offline later.
               </li>
               <li className="pl-2">
@@ -98,7 +98,7 @@ export default function AboutPage() {
                 are, how long have you been on the Internet. Literally, you can
                 figure out how to navigate our site after a quick look. If you
                 want to watch a specific title, search for it via the search
-                box. If you want to look for suggestions, you can use the site's
+                box. If you want to look for suggestions, you can use the site&apos;s
                 categories or simply scroll down for new releases.
               </li>
               <li className="pl-2">
@@ -106,7 +106,7 @@ export default function AboutPage() {
                   Device compatibility:
                 </span>{" "}
                 AnimeGrabber works alright on both your mobile and desktop.
-                However, we'd recommend you use your desktop for a smoother
+                However, we&apos;d recommend you use your desktop for a smoother
                 streaming experience.
               </li>
               <li className="pl-2">
@@ -119,8 +119,8 @@ export default function AboutPage() {
             </ul>
 
             <p className="text-gray-300 mb-6">
-              So if you're looking for a trustworthy and safe site for your
-              Anime streaming, let's give AnimeGrabber a try. And if you like
+              So if you&apos;re looking for a trustworthy and safe site for your
+              Anime streaming, let&apos;s give AnimeGrabber a try. And if you like
               us, please help us to spread the words and do not forget to
               bookmark our site.
             </p>

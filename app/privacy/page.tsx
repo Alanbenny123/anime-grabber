@@ -185,7 +185,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 className="text-xl font-semibold mb-4 mt-8">
-                6. Children's Privacy
+                6. Children&apos;s Privacy
               </h2>
               <p className="mb-4">
                 We do not knowingly solicit information from or market to
@@ -250,7 +250,7 @@ export default function PrivacyPage() {
                 We may update this privacy policy from time to time in order to
                 reflect, for example, changes to our practices or for other
                 operational, legal, or regulatory reasons. The updated version
-                will be indicated by an updated "Revised" date and the updated
+                will be indicated by an updated &lsquo;Revised&lsquo; date and the updated
                 version will be effective as soon as it is accessible.
               </p>
 

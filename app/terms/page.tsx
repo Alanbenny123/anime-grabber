@@ -20,7 +20,7 @@ export default function TermsPage() {
             <div className="prose prose-invert max-w-none">
               <p className="mb-4">
                 Welcome to AnimeGrabber. Please read these Terms of Service
-                ("Terms", "Terms of Service") carefully before using the
+                (&lsquo;Terms&lsquo;, &lsquo;Terms of Service&lsquo;) carefully before using the
                 AnimeGrabber website.
               </p>
 
@@ -78,7 +78,7 @@ export default function TermsPage() {
                 </li>
                 <li className="mb-2">
                   To transmit, or procure the sending of, any advertising or
-                  promotional material, including "spam", chain letters, or
+                  promotional material, including &lsquo;spam&lsquo;, chain letters, or
                   similar solicitation.
                 </li>
                 <li className="mb-2">
@@ -87,7 +87,7 @@ export default function TermsPage() {
                 </li>
                 <li className="mb-2">
                   To engage in any other conduct that restricts or inhibits
-                  anyone's use or enjoyment of the service, or which, as
+                  anyone&lsquo;s use or enjoyment of the service, or which, as
                   determined by us, may harm AnimeGrabber or users of the service or
                   expose them to liability.
                 </li>
@@ -152,7 +152,7 @@ export default function TermsPage() {
               <h2 className="text-xl font-semibold mb-4 mt-8">7. Disclaimer</h2>
               <p className="mb-4">
                 Your use of the service is at your sole risk. The service is
-                provided on an "AS IS" and "AS AVAILABLE" basis. The service is
+                provided on an &lsquo;AS IS&lsquo; and &lsquo;AS AVAILABLE&lsquo; basis. The service is
                 provided without warranties of any kind, whether express or
                 implied, including, but not limited to, implied warranties of
                 merchantability, fitness for a particular purpose,
