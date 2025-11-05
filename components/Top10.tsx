@@ -86,7 +86,7 @@ const allTimePopular = [
   },
 ];
 
-function fillToTen(list) {
+function fillToTen(list: any[]) {
   if (list.length >= 10) return list.slice(0, 10);
   const result = [];
   while (result.length < 10) {
@@ -103,10 +103,10 @@ const tabData = {
   Month: allTimePopular.slice(0, 10),
 };
 
-const tabs = ["Today", "Week", "Month"];
+const tabs: ("Today" | "Week" | "Month")[] = ["Today", "Week", "Month"];
 
 export default function Top10({ minHeight }: { minHeight?: string }) {
-  const [selectedTab, setSelectedTab] = useState("Today");
+  const [selectedTab, setSelectedTab] = useState<"Today" | "Week" | "Month">("Today");
   const animeList = tabData[selectedTab];
 
   return (
@@ -126,7 +126,7 @@ export default function Top10({ minHeight }: { minHeight?: string }) {
                     ? "bg-pink-600 text-white"
                     : "bg-[#23243a] text-gray-200"
                 }`}
-                onClick={() => setSelectedTab(tab)}
+                onClick={() => setSelectedTab(tab as "Today" | "Week" | "Month")}
               >
                 {tab}
               </button>

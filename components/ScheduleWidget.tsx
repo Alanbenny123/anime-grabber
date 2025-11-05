@@ -40,7 +40,7 @@ function buildSchedule() {
     const date = i % weekDates.length;
     schedule.push({
       title: anime.title,
-      episode: anime.episodeNumber || anime.stats?.episode || 1,
+      episode: ("episodeNumber" in anime && typeof anime.episodeNumber === "number" ? anime.episodeNumber : undefined) || ("stats" in anime && "episode" in anime.stats && typeof anime.stats.episode === "number" ? anime.stats.episode : undefined) || 1,
       time: `${6 + (i % 12)}:00:00 ${i % 2 === 0 ? "am" : "pm"}`,
       image: anime.image,
       day,

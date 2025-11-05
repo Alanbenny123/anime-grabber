@@ -4,12 +4,12 @@ import AnimeSection from "@/components/AnimeSection";
 import ScheduleWidget from "@/components/ScheduleWidget";
 import TrendingPosts from "@/components/TrendingPosts";
 import Top10 from "@/components/Top10";
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useLayoutEffect, useState, useEffect } from "react";
 
 import {
   featuredAnime,
-  topAiringAnime,
-  mostPopularAnime,
+  topAiringAnime as fallbackTopAiring,
+  mostPopularAnime as fallbackPopular,
   mostFavoriteAnime,
   latestCompletedAnime,
 } from "@/data/anime";
@@ -19,6 +19,37 @@ export default function Home() {
   const [scheduleHeight, setScheduleHeight] = useState<string | undefined>(
     undefined
   );
+  const [topAiringAnime, setTopAiringAnime] = useState(fallbackTopAiring);
+  const [mostPopularAnime, setMostPopularAnime] = useState(fallbackPopular);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch real anime data from API
+  useEffect(() => {
+    async function fetchAnimeData() {
+      try {
+        // Fetch top airing anime
+        const topAiringResponse = await fetch("/api/anime/top-airing?limit=6");
+        if (topAiringResponse.ok) {
+          const topAiringData = await topAiringResponse.json();
+          setTopAiringAnime(topAiringData.data);
+        }
+
+        // Fetch most popular anime
+        const popularResponse = await fetch("/api/anime/most-popular?limit=6");
+        if (popularResponse.ok) {
+          const popularData = await popularResponse.json();
+          setMostPopularAnime(popularData.data);
+        }
+      } catch (error) {
+        console.error("Error fetching anime data:", error);
+        // Keep fallback data on error
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchAnimeData();
+  }, []);
 
   useLayoutEffect(() => {
     if (!scheduleRef.current) return;
@@ -43,17 +74,25 @@ export default function Home() {
         rating={featuredAnime.rating}
       />
       {/* Top Airing */}
-      <AnimeSection
-        title="Top Airing"
-        viewAllLink="/top-airing"
-        animeList={topAiringAnime}
-      />
-      {/* Most Popular */}
-      <AnimeSection
-        title="Most Popular"
-        viewAllLink="/most-popular"
-        animeList={mostPopularAnime}
-      />
+      {loading ? (
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-gray-400">Loading anime data...</div>
+        </div>
+      ) : (
+        <>
+          <AnimeSection
+            title="Top Airing"
+            viewAllLink="/top-airing"
+            animeList={topAiringAnime}
+          />
+          {/* Most Popular */}
+          <AnimeSection
+            title="Most Popular"
+            viewAllLink="/most-popular"
+            animeList={mostPopularAnime}
+          />
+        </>
+      )}
       {/* Most Favorite */}
       <AnimeSection
         title="Most Favorite"

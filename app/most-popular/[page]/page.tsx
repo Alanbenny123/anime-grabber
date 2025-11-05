@@ -84,7 +84,7 @@ export default function PopularPage({ params }: Props) {
               title={anime.title}
               image={anime.image}
               type={anime.type}
-              rating={anime.rating}
+              rating={"rating" in anime && typeof anime.rating === "number" ? anime.rating : undefined}
             />
           ))}
         </div>

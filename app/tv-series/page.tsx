@@ -91,7 +91,7 @@ export default function TVSeriesPage() {
                 title={anime.title}
                 image={anime.image}
                 type={anime.type}
-                rating={anime.rating}
+                rating={"rating" in anime && typeof anime.rating === "number" ? anime.rating : undefined}
               />
             ))}
           </div>
@@ -116,7 +116,7 @@ export default function TVSeriesPage() {
                 title={anime.title}
                 image={anime.image}
                 type={anime.type}
-                rating={anime.rating}
+                rating={"rating" in anime && typeof anime.rating === "number" ? anime.rating : undefined}
               />
             ))}
           </div>
