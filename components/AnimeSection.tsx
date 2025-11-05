@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import AnimeCard from "./AnimeCard";
 
@@ -11,6 +13,11 @@ interface AnimeSectionProps {
     type?: string;
     episodeNumber?: number;
     rating?: number;
+    stats?: {
+      views?: number;
+      likes?: number;
+      episode?: number;
+    };
   }>;
 }
 
@@ -43,6 +50,7 @@ export default function AnimeSection({
               type={anime.type}
               episodeNumber={anime.episodeNumber}
               rating={anime.rating}
+              stats={anime.stats}
             />
           ))}
         </div>

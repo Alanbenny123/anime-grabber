@@ -1,7 +1,6 @@
-import Footer from "../../../components/Footer";
-import AnimeCard from "../../../components/AnimeCard";
-import { popularAnime, topAiringAnime } from "../../../data/anime";
-import { Metadata } from "next";
+import { popularAnime, topAiringAnime } from "../../../../data/anime";
+import AnimeCard from "../../../../components/AnimeCard";
+import Pagination from "../../../../components/Pagination";
 
 // Define available genres
 const genres = [
@@ -11,29 +10,28 @@ const genres = [
   "drama",
   "fantasy",
   "horror",
-  "mecha",
   "mystery",
   "romance",
   "sci-fi",
   "slice-of-life",
   "sports",
   "supernatural",
-  "thriller",
 ];
 
 // Define props type for consistency
 type Props = {
-  params: { slug: string };
+  params: { slug: string; page: string };
 };
 
 // Generate metadata for each genre page
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export function generateMetadata({ params }: Props) {
   const genre = params.slug;
+  const page = parseInt(params.page) || 1;
   const displayName = getGenreDisplayName(genre);
 
   return {
-    title: `${displayName} Anime - AnimeGrabber`,
-    description: `Watch the best ${displayName.toLowerCase()} anime series and movies in HD quality.`,
+    title: `${displayName} Anime - Page ${page} - AnimeGrabber`,
+    description: `Browse page ${page} of the best ${displayName.toLowerCase()} anime series and movies in HD quality.`,
   };
 }
 
@@ -52,10 +50,43 @@ function getAnimeByGenre(genre: string) {
   return [...popularAnime, ...topAiringAnime];
 }
 
+// Items per page
+const ITEMS_PER_PAGE = 24;
+
+// Generate static params for all genres and pages
+export function generateStaticParams() {
+  const params = [];
+  const animeCount = popularAnime.length + topAiringAnime.length;
+  const totalPages = Math.ceil(animeCount / ITEMS_PER_PAGE);
+
+  for (const genre of genres) {
+    for (let page = 1; page <= totalPages; page++) {
+      params.push({
+        slug: genre,
+        page: page.toString(),
+      });
+    }
+  }
+  return params;
+}
+
 export default function GenrePage({ params }: Props) {
   const genre = params.slug;
+  const currentPage = parseInt(params.page) || 1;
   const displayName = getGenreDisplayName(genre);
-  const animeInGenre = getAnimeByGenre(genre);
+
+  // Get all anime for this genre
+  const allAnimeInGenre = getAnimeByGenre(genre);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(allAnimeInGenre.length / ITEMS_PER_PAGE);
+
+  // Calculate slice indices
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+
+  // Get current page items
+  const currentAnime = allAnimeInGenre.slice(startIndex, endIndex);
 
   return (
     <main className="min-h-screen bg-[#0f0f0f] py-8 pt-20">
@@ -86,13 +117,14 @@ export default function GenrePage({ params }: Props) {
           <select className="bg-[#1f2937] text-white px-4 py-2 rounded font-medium border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option>Latest</option>
             <option>Rating</option>
+            <option>Popularity</option>
             <option>A-Z</option>
           </select>
         </div>
 
         {/* Anime Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-          {animeInGenre.map((anime) => (
+          {currentAnime.map((anime) => (
             <AnimeCard
               key={anime.id}
               id={anime.id}
@@ -105,25 +137,11 @@ export default function GenrePage({ params }: Props) {
         </div>
 
         {/* Pagination */}
-        <div className="mt-12 flex justify-center">
-          <div className="inline-flex">
-            <button className="bg-[#1f2937] text-white px-4 py-2 rounded-l-md font-medium">
-              Previous
-            </button>
-            <button className="bg-blue-600 text-white px-4 py-2 font-medium">
-              1
-            </button>
-            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 font-medium">
-              2
-            </button>
-            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 font-medium">
-              3
-            </button>
-            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 rounded-r-md font-medium">
-              Next
-            </button>
-          </div>
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          baseUrl={`/genre/${genre}`}
+        />
       </section>
     </main>
   );

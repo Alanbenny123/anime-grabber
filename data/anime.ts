@@ -9,228 +9,273 @@ export interface AnimeData {
   genres?: string[];
   status?: string;
   releaseYear?: number;
+  stats?: {
+    views?: number;
+    likes?: number;
+    episode?: number;
+  };
 }
 
-export const featuredAnime: AnimeData = {
-  id: "one-piece",
-  title: "One Piece",
-  image:
-    "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
-  type: "TV Series",
-  rating: 9.2,
+export const featuredAnime = {
+  id: "1",
+  title: "Fire Force Season 3",
   description:
-    'Follows the adventures of Monkey D. Luffy and his pirate crew in order to find the greatest treasure ever left by the legendary Pirate, Gold Roger. The famous mystery treasure named "One Piece".',
-  genres: ["Action", "Adventure", "Comedy", "Fantasy"],
-  status: "Ongoing",
-  releaseYear: 1999,
+    "The story follows Special Fire Force Company 8, which features young and powerful third-generation pyrokinetic Shinra Kusakabe.",
+  image: "/images/fire-force-banner.jpg",
+  type: "TV",
+  rating: 9.2,
 };
 
-export const latestEpisodes: AnimeData[] = [
+export const latestEpisodes = [
   {
-    id: "demon-slayer-s4e3",
-    title: "Demon Slayer: Kimetsu no Yaiba Season 4 Episode 3",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BZjZjNzI5MDctY2Y4YS00NmM4LTljMmItZTFkOTExNGI3ODRhXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_.jpg",
+    id: "1",
+    title: "Fire Force",
+    episodeNumber: 1,
+    image: "/images/fire-force.jpg",
     type: "TV",
-    episodeNumber: 3,
+    rating: 9.2,
+  },
+];
+
+export const popularAnime = [
+  {
+    id: "1",
+    title: "One Piece",
+    image: "/images/one-piece.jpg",
+    type: "TV",
     rating: 9.5,
   },
-  {
-    id: "jujutsu-kaisen-s2e21",
-    title: "Jujutsu Kaisen Season 2 Episode 21",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BMTMwMDM4N2EtOTJiYy00OTQ0LThlZDYtYWUwOWFlY2IxZGVjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
-    type: "TV",
-    episodeNumber: 21,
-    rating: 9.3,
-  },
-  {
-    id: "my-hero-academia-s7e1",
-    title: "My Hero Academia Season 7 Episode 1",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BNTk1NTc0MTYtY2IyNC00OWVjLWJhYWItNDQ0ODdiNWI2NjczXkEyXkFqcGdeQXVyMTQ3MjMyMTYz._V1_.jpg",
-    type: "TV",
-    episodeNumber: 1,
-    rating: 8.7,
-  },
-  {
-    id: "bleach-tybw-e20",
-    title: "BLEACH: Thousand-Year Blood War Episode 20",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BODFmYTUwYzMtM2M2My00NGExLWIzMDctYmRjNTNhZDc4MTQ0XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg",
-    type: "TV",
-    episodeNumber: 20,
-    rating: 9.1,
-  },
-  {
-    id: "attack-on-titan-ova",
-    title: "Attack on Titan: Special Episode",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BMGY3Mzg3M2UtNzYxNy00ZTAyLWFkMWQtYzUyZjlmYmY5NDMzXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg",
-    type: "OVA",
-    episodeNumber: 1,
-    rating: 8.9,
-  },
-  {
-    id: "solo-leveling-e11",
-    title: "Solo Leveling Episode 11",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BZjUxMDVkMTQtNDQwMi00OTU2LTk1YTQtYTI3MWJiM2ZlMmJhXkEyXkFqcGdeQXVyODMyNTM0MjM@._V1_FMjpg_UX1000_.jpg",
-    type: "TV",
-    episodeNumber: 11,
-    rating: 9.4,
-  },
 ];
 
-export const popularAnime: AnimeData[] = [
-  {
-    id: "naruto",
-    title: "Naruto Shippuden",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BMTE5NzIwMGUtYTE1MS00MDUxLTgyZjctOWVkZDAxM2M4ZWQ4XkEyXkFqcGdeQXVyNjc2NjA5MTU@._V1_.jpg",
-    type: "TV",
-    rating: 8.7,
-  },
-  {
-    id: "chainsaw-man",
-    title: "Chainsaw Man",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BZjY5MDFhZTgtOGVhMi00NTUzLTk5NjktNmRlMjI2NzI3Y2M4XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_FMjpg_UX1000_.jpg",
-    type: "TV",
-    rating: 8.6,
-  },
-  {
-    id: "haikyu",
-    title: "Haikyu!!",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BNjkyNDI2MTgtN2Y3NS00M2IyLWJhNjktODEwMTkzMzYwMzQzXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
-    type: "TV",
-    rating: 8.8,
-  },
-  {
-    id: "fullmetal-alchemist",
-    title: "Fullmetal Alchemist: Brotherhood",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BZmEzN2YzOTItMDI5MS00MGU4LWI1NWQtOTg5ZThhNGQwYTEzXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg",
-    type: "TV",
-    rating: 9.1,
-  },
-  {
-    id: "tokyo-revengers",
-    title: "Tokyo Revengers",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BMzJiZDdjMGEtODRlNS00ZjBkLWE4MmMtODQ4YzRhYmY4MmJjXkEyXkFqcGdeQXVyMTQ3MjMyMTYz._V1_FMjpg_UX1000_.jpg",
-    type: "TV",
-    rating: 8.3,
-  },
-  {
-    id: "hunter-hunter",
-    title: "Hunter x Hunter",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BNGM0YTk3MWEtN2JiYy00ZDMxLTg5MzUtYThkZjNjNDJlM2JkXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
-    type: "TV",
-    rating: 9.0,
-  },
-];
-
-export const topAiringAnime: AnimeData[] = [
-  {
-    id: "jujutsu-kaisen",
-    title: "Jujutsu Kaisen",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BMTMwMDM4N2EtOTJiYy00OTQ0LThlZDYtYWUwOWFlY2IxZGVjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
-    type: "TV",
-    rating: 8.8,
-  },
-  {
-    id: "demon-slayer",
-    title: "Demon Slayer: Kimetsu no Yaiba",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BZjZjNzI5MDctY2Y4YS00NmM4LTljMmItZTFkOTExNGI3ODRhXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_.jpg",
-    type: "TV",
-    rating: 8.7,
-  },
+export const topAiringAnime = [
   {
     id: "one-piece",
     title: "One Piece",
     image:
       "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
     type: "TV",
-    rating: 9.2,
+    stats: {
+      views: 1131,
+      likes: 1122,
+    },
   },
   {
-    id: "solo-leveling",
-    title: "Solo Leveling",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BZjUxMDVkMTQtNDQwMi00OTU2LTk1YTQtYTI3MWJiM2ZlMmJhXkEyXkFqcGdeQXVyODMyNTM0MjM@._V1_FMjpg_UX1000_.jpg",
+    id: "sakamoto-days",
+    title: "Sakamoto Days",
+    image: "https://cdn.myanimelist.net/images/anime/1418/134095.jpg",
     type: "TV",
-    rating: 9.4,
+    stats: {
+      views: 11,
+      likes: 11,
+    },
   },
   {
-    id: "blue-lock",
-    title: "Blue Lock",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BODBmM2JmY2EtMzRlZC00Njk0LTkzMWMtZTMxYzljZTJkYTFlXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg",
+    id: "apothecary-diaries",
+    title: "The Apothecary Diaries Season 2",
+    image: "https://cdn.myanimelist.net/images/anime/1708/138033.jpg",
     type: "TV",
-    rating: 8.5,
+    stats: {
+      views: 21,
+      likes: 19,
+    },
   },
   {
-    id: "mashle",
-    title: "Mashle: Magic and Muscles",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BMWQ1MzA2YzctOTgxZS00YTdmLTlhZGItMDI3OGI1ZGEwZDI0XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg",
+    id: "wind-breaker",
+    title: "Wind Breaker Season 2",
+    image: "https://cdn.myanimelist.net/images/anime/1792/139337.jpg",
     type: "TV",
-    rating: 8.0,
+    stats: {
+      views: 10,
+      likes: 8,
+    },
+  },
+  {
+    id: "case-closed",
+    title: "Case Closed",
+    image: "https://cdn.myanimelist.net/images/anime/7/75199.jpg",
+    type: "TV",
+    stats: {
+      views: 1164,
+      likes: 129,
+    },
   },
 ];
 
-export const upcomingAnime: AnimeData[] = [
+export const upcomingAnime = [
   {
-    id: "spy-family-s3",
-    title: "Spy x Family Season 3",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BNGY5NWIxMjAtODBjNC00MmZhLTk1ZTAtNGRhYTYyYjgwYTJiXkEyXkFqcGdeQXVyODMyNTM0MjM@._V1_.jpg",
+    id: "1",
+    title: "Solo Leveling",
+    image: "/images/solo-leveling.jpg",
     type: "TV",
-    rating: 8.6,
+    rating: 9.3,
+  },
+];
+
+export const mostPopularAnime = [
+  {
+    id: "one-piece",
+    title: "One Piece",
+    image:
+      "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+    type: "TV",
+    stats: {
+      views: 1131,
+      likes: 1122,
+    },
   },
   {
-    id: "vinland-saga-s3",
-    title: "Vinland Saga Season 3",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BNzQwODI0ODItMmFkMS00ZmRiLWFhM2ItODViNDlkNjRmZGI1XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg",
+    id: "naruto-shippuden",
+    title: "Naruto: Shippuden",
+    image: "https://cdn.myanimelist.net/images/anime/1565/111305.jpg",
     type: "TV",
-    rating: 8.8,
+    stats: {
+      views: 500,
+      likes: 500,
+      episode: 500,
+    },
   },
   {
-    id: "dragon-ball-daima",
-    title: "Dragon Ball Daima",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BMzk3YjYxMTMtYzY3Mi00NmE1LTk2YzMtMzZlZGM4ZDRmMzU4XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg",
+    id: "bleach",
+    title: "Bleach",
+    image: "https://cdn.myanimelist.net/images/anime/3/40451.jpg",
     type: "TV",
-    rating: 8.5,
+    stats: {
+      views: 366,
+      likes: 366,
+      episode: 366,
+    },
   },
   {
-    id: "kaiju-no8",
-    title: "Kaiju No. 8",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BMmNiZGY3ZGYtNWVkYy00Y2QyLWIyYjItMWVmMTFiZThjN2I2XkEyXkFqcGdeQXVyODMyNTM0MjM@._V1_FMjpg_UX1000_.jpg",
+    id: "solo-leveling",
+    title: "Solo Leveling Season 2: Arise from the Shadow",
+    image: "https://cdn.myanimelist.net/images/anime/1926/138845.jpg",
     type: "TV",
-    rating: 8.7,
+    stats: {
+      views: 13,
+      likes: 13,
+      episode: 13,
+    },
   },
   {
-    id: "tower-of-god-s2",
-    title: "Tower of God Season 2",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BZjY0YjJmZjAtM2I2ZS00OGI1LWIyZjItMzBjOWUwYjY4Y2NkXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_.jpg",
+    id: "black-clover",
+    title: "Black Clover",
+    image: "https://cdn.myanimelist.net/images/anime/2/88336.jpg",
     type: "TV",
-    rating: 8.4,
+    stats: {
+      views: 170,
+      likes: 170,
+      episode: 170,
+    },
+  },
+];
+
+export const mostFavoriteAnime = [
+  {
+    id: "one-piece",
+    title: "One Piece",
+    image:
+      "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+    type: "TV",
+    stats: {
+      views: 1131,
+      likes: 1122,
+    },
   },
   {
-    id: "dungeon-black-company-s2",
-    title: "The Dungeon of Black Company Season 2",
-    image:
-      "https://m.media-amazon.com/images/M/MV5BOWUwZTkwMGMtNTU0MS00NDgwLWE0YTAtNTJkYmU5NzZiZDZiXkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_.jpg",
+    id: "chainsaw-man",
+    title: "Chainsaw Man",
+    image: "https://cdn.myanimelist.net/images/anime/1806/126216.jpg",
     type: "TV",
-    rating: 7.5,
+    stats: {
+      views: 12,
+      likes: 12,
+      episode: 12,
+    },
+  },
+  {
+    id: "jujutsu-kaisen",
+    title: "Jujutsu Kaisen (TV)",
+    image: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
+    type: "TV",
+    stats: {
+      views: 24,
+      likes: 24,
+      episode: 24,
+    },
+  },
+  {
+    id: "demon-slayer",
+    title: "Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc",
+    image: "https://cdn.myanimelist.net/images/anime/1908/135431.jpg",
+    type: "TV",
+    stats: {
+      views: 11,
+      likes: 11,
+      episode: 11,
+    },
+  },
+  {
+    id: "black-clover",
+    title: "Black Clover",
+    image: "https://cdn.myanimelist.net/images/anime/2/88336.jpg",
+    type: "TV",
+    stats: {
+      views: 170,
+      likes: 170,
+      episode: 170,
+    },
+  },
+];
+
+export const latestCompletedAnime = [
+  {
+    id: "hua-jianghu",
+    title: "Hua Jianghu: Bu Liang Ren 7th Season",
+    image: "https://cdn.myanimelist.net/images/anime/1392/134978.jpg",
+    type: "ONA",
+    stats: {
+      views: 12,
+      episode: 12,
+    },
+  },
+  {
+    id: "honor-of-kings",
+    title: "Honor of Kings: Chapter of Glory",
+    image: "https://cdn.myanimelist.net/images/anime/1794/139314.jpg",
+    type: "ONA",
+    stats: {
+      views: 4,
+      episode: 4,
+    },
+  },
+  {
+    id: "thunderbolt-fantasy",
+    title: "Thunderbolt Fantasy - The Final Chapter",
+    image: "https://cdn.myanimelist.net/images/anime/1519/133791.jpg",
+    type: "Movie",
+    stats: {
+      views: 1,
+      episode: 1,
+    },
+  },
+  {
+    id: "boy-who-saw-wind",
+    title: "The Boy Who Saw the Wind",
+    image: "https://cdn.myanimelist.net/images/anime/1597/134090.jpg",
+    type: "Movie",
+    stats: {
+      views: 1,
+      episode: 1,
+    },
+  },
+  {
+    id: "dr-slump",
+    title: "Dr. Slump: Arale-chan",
+    image: "https://cdn.myanimelist.net/images/anime/1259/132765.jpg",
+    type: "TV",
+    stats: {
+      views: 168,
+      episode: 243,
+    },
   },
 ];

@@ -1,13 +1,8 @@
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+"use client";
+
+import { useState, useMemo } from "react";
 import AnimeCard from "../../components/AnimeCard";
 import { popularAnime } from "../../data/anime";
-
-export const metadata = {
-  title: "Most Popular Anime - AnimeGrabber",
-  description:
-    "Browse and watch the most popular anime series and movies in HD quality.",
-};
 
 // Additional popular anime data
 const allTimePopular = [
@@ -112,83 +107,143 @@ const allTimePopular = [
 // Combine all popular anime data
 const allPopularAnime = [...allTimePopular, ...popularAnime];
 
+type FilterType =
+  | "All"
+  | "TV Series"
+  | "Movies"
+  | "This Season"
+  | "Last Season";
+
 export default function MostPopularPage() {
+  const [activeFilter, setActiveFilter] = useState<FilterType>("All");
+  const [sortBy, setSortBy] = useState<string>("Popularity");
+
+  // Filter and sort anime based on active filter and sort option
+  const filteredAnime = useMemo(() => {
+    let filtered = [...allPopularAnime];
+
+    // Apply filter
+    switch (activeFilter) {
+      case "TV Series":
+        filtered = filtered.filter((anime) => anime.type === "TV");
+        break;
+      case "Movies":
+        filtered = filtered.filter((anime) => anime.type === "Movie");
+        break;
+      case "This Season":
+        // In a real app, you would filter based on airing date
+        filtered = filtered.slice(0, 6);
+        break;
+      case "Last Season":
+        // In a real app, you would filter based on airing date
+        filtered = filtered.slice(6, 12);
+        break;
+      default:
+        break;
+    }
+
+    // Apply sort
+    switch (sortBy) {
+      case "Rating":
+        filtered.sort((a, b) => b.rating - a.rating);
+        break;
+      case "Title A-Z":
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "Latest":
+        // In a real app, you would sort by release date
+        filtered.reverse();
+        break;
+      default:
+        // Default sorting by popularity (already in order)
+        break;
+    }
+
+    return filtered;
+  }, [activeFilter, sortBy]);
+
+  const filterButtons: FilterType[] = [
+    "All",
+    "TV Series",
+    "Movies",
+    "This Season",
+    "Last Season",
+  ];
+
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-[#0f0f0f] py-8 pt-20">
-        <section className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8">
-            Most Popular Anime
-          </h1>
+    <main className="min-h-screen bg-[#0f0f0f] py-8 pt-20">
+      <section className="container mx-auto px-4">
+        <h1 className="text-3xl md:text-4xl font-bold mb-8">
+          Most Popular Anime
+        </h1>
 
-          {/* Filter options */}
-          <div className="flex flex-wrap gap-3 mb-8">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded font-medium">
-              All
+        {/* Filter options */}
+        <div className="flex flex-wrap gap-3 mb-8">
+          {filterButtons.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`${
+                activeFilter === filter
+                  ? "bg-blue-600"
+                  : "bg-[#1f2937] hover:bg-[#374151]"
+              } text-white px-4 py-2 rounded font-medium transition-colors duration-200`}
+            >
+              {filter}
             </button>
-            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 rounded font-medium">
-              TV Series
+          ))}
+        </div>
+
+        {/* Sort options */}
+        <div className="flex items-center mb-8">
+          <label className="mr-3 font-medium">Sort by:</label>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="bg-[#1f2937] text-white px-4 py-2 rounded font-medium border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option>Popularity</option>
+            <option>Rating</option>
+            <option>Latest</option>
+            <option>Title A-Z</option>
+          </select>
+        </div>
+
+        {/* Anime Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+          {filteredAnime.map((anime) => (
+            <AnimeCard
+              key={anime.id}
+              id={anime.id}
+              title={anime.title}
+              image={anime.image}
+              type={anime.type}
+              rating={anime.rating}
+            />
+          ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="mt-12 flex justify-center">
+          <div className="inline-flex">
+            <button className="bg-[#1f2937] text-white px-4 py-2 rounded-l-md font-medium">
+              Previous
             </button>
-            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 rounded font-medium">
-              Movies
+            <button className="bg-blue-600 text-white px-4 py-2 font-medium">
+              1
             </button>
-            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 rounded font-medium">
-              This Season
+            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 font-medium">
+              2
             </button>
-            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 rounded font-medium">
-              Last Season
+            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 font-medium">
+              3
+            </button>
+            <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 rounded-r-md font-medium">
+              Next
             </button>
           </div>
-
-          {/* Sort options */}
-          <div className="flex items-center mb-8">
-            <label className="mr-3 font-medium">Sort by:</label>
-            <select className="bg-[#1f2937] text-white px-4 py-2 rounded font-medium border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <option>Popularity</option>
-              <option>Rating</option>
-              <option>Latest</option>
-              <option>Title A-Z</option>
-            </select>
-          </div>
-
-          {/* Anime Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-            {allPopularAnime.map((anime) => (
-              <AnimeCard
-                key={anime.id}
-                id={anime.id}
-                title={anime.title}
-                image={anime.image}
-                type={anime.type}
-                rating={anime.rating}
-              />
-            ))}
-          </div>
-
-          {/* Pagination */}
-          <div className="mt-12 flex justify-center">
-            <div className="inline-flex">
-              <button className="bg-[#1f2937] text-white px-4 py-2 rounded-l-md font-medium">
-                Previous
-              </button>
-              <button className="bg-blue-600 text-white px-4 py-2 font-medium">
-                1
-              </button>
-              <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 font-medium">
-                2
-              </button>
-              <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 font-medium">
-                3
-              </button>
-              <button className="bg-[#1f2937] hover:bg-[#374151] text-white px-4 py-2 rounded-r-md font-medium">
-                Next
-              </button>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </section>
+    </main>
   );
 }

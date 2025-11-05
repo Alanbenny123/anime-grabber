@@ -1,13 +1,60 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #0f0f0f;
-  --foreground: #ffffff;
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --secondary: #1f2937;
-  --accent: #3b82f6;
-  color-scheme: dark;
+@layer base {
+  :root {
+    --background: #0f0f0f;
+    --foreground: #ffffff;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --secondary: #1f2937;
+    --accent: #3b82f6;
+  }
+
+  body {
+    @apply bg-[#0f0f0f] text-white;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply relative px-4 py-2 transition-colors hover:text-blue-500;
+  }
+
+  .card {
+    @apply bg-gray-800 rounded-lg overflow-hidden transition-transform hover:-translate-y-1;
+  }
+
+  .search-bar {
+    @apply w-full px-6 py-2 bg-white/10 rounded-full focus:outline-none focus:bg-white/20;
+  }
+
+  /* Sidebar styles */
+  .sidebar-link {
+    @apply block text-gray-300 hover:text-white transition-colors duration-200;
+  }
+
+  .sidebar-section {
+    @apply py-4 border-b border-gray-700;
+  }
+
+  .sidebar-heading {
+    @apply text-sm font-medium text-gray-400 uppercase tracking-wider mb-3;
+  }
+
+  /* Footer styles */
+  .footer-link {
+    @apply text-gray-400 hover:text-white transition-colors duration-200;
+  }
+
+  .az-list-button {
+    @apply px-3 py-1 bg-[#2a2a3e] rounded hover:bg-[#3a3a4e] transition-colors text-sm text-gray-300 hover:text-white;
+  }
+
+  .social-button {
+    @apply p-2 rounded hover:opacity-80 transition-opacity;
+  }
 }
 
 @theme inline {
@@ -21,8 +68,6 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif);
   text-rendering: optimizeSpeed;
 }
@@ -36,35 +81,20 @@ a:hover {
   color: var(--primary);
 }
 
-.nav-item {
-  position: relative;
-  padding: 0.5rem 1rem;
-  transition: color 0.2s ease;
+/* Custom scrollbar for sidebar */
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 4px;
 }
 
-.nav-item:hover {
-  color: var(--primary);
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.card {
-  background: var(--secondary);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  transition: transform 0.2s ease;
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: #4a4a5e;
+  border-radius: 2px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.search-bar {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  padding: 0.5rem 1.5rem;
-  width: 100%;
-}
-
-.search-bar:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.2);
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #5a5a6e;
 }
