@@ -51,5 +51,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Thanks to all contributors who have helped shape this project
-- Inspired by modern streaming platforms
+- Built around anime discovery and metadata
 - Built with Next.js and Tailwind CSS

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" role="img" aria-labelledby="title description">
+  <title id="title">Anime artwork unavailable</title>
+  <desc id="description">A blue and purple gradient with a stylized star.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1">
+      <stop stop-color="#172554"/>
+      <stop offset="1" stop-color="#581c87"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1200" fill="url(#background)"/>
+  <circle cx="400" cy="540" r="195" fill="#ffffff" opacity=".08"/>
+  <path d="m400 325 52 161 169 1-137 99 52 161-136-100-136 100 52-161-137-99 169-1z" fill="#ffffff" opacity=".58"/>
+  <text x="400" y="930" fill="#ffffff" font-family="Arial, sans-serif" font-size="48" font-weight="700" text-anchor="middle">AnimeGrabber</text>
+</svg>

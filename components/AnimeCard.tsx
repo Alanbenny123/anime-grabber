@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+
+const FALLBACK_IMAGE = "/anime-placeholder.svg";
 
 interface AnimeCardProps {
   id: string;
@@ -26,13 +29,18 @@ export default function AnimeCard({
   rating,
   stats,
 }: AnimeCardProps) {
+  const [failedImage, setFailedImage] = useState<string | null>(null);
+  const imageSource = !image || failedImage === image ? FALLBACK_IMAGE : image;
   return (
     <div className="card group relative overflow-hidden">
       <Link href={`/anime/${id}`}>
         <div className="relative aspect-[2/3] overflow-hidden">
           <Image
-            src={image}
+            src={imageSource}
             alt={title}
+            onError={() => {
+              if (imageSource !== FALLBACK_IMAGE) setFailedImage(image);
+            }}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

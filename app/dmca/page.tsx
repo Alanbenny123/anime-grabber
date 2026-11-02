@@ -1,6 +1,3 @@
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-
 export const metadata = {
   title: "DMCA Policy - AnimeGrabber",
   description:
@@ -9,8 +6,6 @@ export const metadata = {
 
 export default function DMCAPage() {
   return (
-    <>
-      <Header />
       <main className="min-h-screen bg-[#0f0f0f] py-8 pt-20">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold mb-8">DMCA Policy</h1>
@@ -21,26 +16,20 @@ export default function DMCAPage() {
                 Digital Millennium Copyright Act (DMCA) Notice
               </h2>
               <p className="mb-4">
-                AnimeGrabber respects the intellectual property rights of others
-                and expects its users to do the same. In accordance with the
-                Digital Millennium Copyright Act of 1998 (&lsquo;DMCA&lsquo;), we will
-                respond expeditiously to claims of copyright infringement that
-                are reported to our designated copyright agent.
+                AnimeGrabber provides anime metadata, trailers, and streaming
+                links listed by MyAnimeList. You can report a link or listing
+                that you believe raises a copyright concern using the contact
+                address below.
               </p>
 
               <h2 className="text-xl font-semibold mb-4 mt-8">Our Position</h2>
               <p className="mb-4">
-                AnimeGrabber is a platform that provides links to third-party
-                content. We do not host, upload, or store any videos, media
-                files, or content on our servers. All content accessible through
-                our service is hosted by third-party providers.
+                AnimeGrabber does not host full episodes. Trailer playback uses
+                YouTube, and streaming links open third-party websites.
               </p>
               <p className="mb-4">
-                We function as a search engine that helps users find anime
-                content available on the internet. As a platform that only
-                provides links and does not host any content, we comply with the
-                DMCA by removing links to allegedly infringing content when
-                properly notified.
+                Reports should identify the specific page or link so it can be
+                reviewed.
               </p>
 
               <h2 className="text-xl font-semibold mb-4 mt-8">
@@ -49,7 +38,7 @@ export default function DMCAPage() {
               <p className="mb-4">
                 If you believe that content available on or through our site
                 infringes one or more of your copyrights, please immediately
-                notify our designated copyright agent by submitting a written
+                contact us by submitting a written
                 DMCA notice. Your notice must include the following information:
               </p>
               <ol className="list-decimal list-inside mb-4 ml-4 space-y-2">
@@ -93,7 +82,7 @@ export default function DMCAPage() {
                 Submit Your DMCA Notice
               </h2>
               <p className="mb-4">
-                Please send your DMCA notice to our designated copyright agent
+                Please send your notice to the contact address
                 at:
               </p>
               <p className="mb-4">
@@ -115,7 +104,7 @@ export default function DMCAPage() {
               <p className="mb-4">
                 If you believe that your content was removed or access to it was
                 disabled by mistake or misidentification, you may submit a
-                counter notification to our designated agent. Your counter
+                counter notification to the contact address above. Your counter
                 notification must include the following:
               </p>
               <ol className="list-decimal list-inside mb-4 ml-4 space-y-2">
@@ -143,28 +132,9 @@ export default function DMCAPage() {
                 </li>
               </ol>
 
-              <h2 className="text-xl font-semibold mb-4 mt-8">
-                Repeat Infringers
-              </h2>
-              <p className="mb-4">
-                It is our policy in appropriate circumstances to disable and/or
-                terminate the accounts of users who are repeat infringers.
-              </p>
-
-              <h2 className="text-xl font-semibold mb-4 mt-8">
-                Changes to Our DMCA Policy
-              </h2>
-              <p className="mb-4">
-                We reserve the right to modify this DMCA policy at any time. If
-                we make material changes to this policy, we will notify you by
-                updating the date at the bottom of this page and, where required
-                by applicable law, we may provide you with additional notice.
-              </p>
             </div>
           </div>
         </div>
       </main>
-      <Footer />
-    </>
   );
 }

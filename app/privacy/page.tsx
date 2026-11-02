@@ -1,5 +1,3 @@
-import Footer from "../../components/Footer";
-
 export const metadata = {
   title: "Privacy Policy - AnimeGrabber",
   description:
@@ -36,90 +34,43 @@ export default function PrivacyPage() {
 
             <h3 className="text-lg font-medium mb-3 mt-6">Personal Data</h3>
             <p className="mb-4">
-              When you create an account or subscribe to our newsletter, we may
-              collect personally identifiable information, such as your:
+              This version of AnimeGrabber has no account registration,
+              newsletter subscription, payment form, or in-app comment form.
             </p>
-            <ul className="list-disc list-inside mb-4 ml-4">
-              <li>Email address</li>
-              <li>Username</li>
-              <li>Password</li>
-            </ul>
 
             <h3 className="text-lg font-medium mb-3 mt-6">Derivative Data</h3>
             <p className="mb-4">
-              Information our servers automatically collect when you access the
-              website, such as your:
+              A request to a deployed website can include technical details such
+              as your IP address, browser type, requested page, and access time.
+              Logging and retention depend on the hosting configuration.
             </p>
-            <ul className="list-disc list-inside mb-4 ml-4">
-              <li>IP address</li>
-              <li>Browser type</li>
-              <li>Operating system</li>
-              <li>Access times</li>
-              <li>Pages viewed</li>
-            </ul>
 
             <h2 className="text-xl font-semibold mb-4 mt-8">
               2. Use of Your Information
             </h2>
             <p className="mb-4">
-              Having accurate information about you permits us to provide you
-              with a smooth, efficient, and customized experience. We may use
-              information collected about you via the website to:
+              Technical request data may be processed to serve pages and operate
+              the website. The current app does not maintain user profiles or
+              process payments.
             </p>
-            <ul className="list-disc list-inside mb-4 ml-4">
-              <li>Create and manage your account</li>
-              <li>Send you technical notices and support messages</li>
-              <li>Respond to your comments or inquiries</li>
-              <li>Prevent fraudulent transactions and monitor against theft</li>
-              <li>
-                Request feedback and contact you about your use of the website
-              </li>
-              <li>
-                Compile anonymous statistical data for use in improving our
-                service
-              </li>
-            </ul>
 
             <h2 className="text-xl font-semibold mb-4 mt-8">
               3. Disclosure of Your Information
             </h2>
             <p className="mb-4">
-              We may share information we have collected about you in certain
-              situations. Your information may be disclosed as follows:
-            </p>
-
-            <h3 className="text-lg font-medium mb-3 mt-6">
-              By Law or to Protect Rights
-            </h3>
-            <p className="mb-4">
-              If we believe the release of information about you is necessary to
-              respond to legal process, to investigate or remedy potential
-              violations of our policies, or to protect the rights, property,
-              and safety of others, we may share your information as permitted
-              or required by any applicable law, rule, or regulation.
-            </p>
-
-            <h3 className="text-lg font-medium mb-3 mt-6">
-              Third-Party Service Providers
-            </h3>
-            <p className="mb-4">
-              We may share your information with third parties that perform
-              services for us or on our behalf, including payment processing,
-              data analysis, email delivery, hosting services, customer service,
-              and marketing assistance.
+              The site retrieves anime metadata from Jikan. A title page may
+              embed a YouTube trailer, and an external streaming link opens the
+              provider&apos;s site when you select it. Those services have their own
+              privacy practices.
             </p>
 
             <h2 className="text-xl font-semibold mb-4 mt-8">
               4. Security of Your Information
             </h2>
             <p className="mb-4">
-              We use administrative, technical, and physical security measures
-              to help protect your personal information. While we have taken
-              reasonable steps to secure the personal information you provide to
-              us, please be aware that despite our efforts, no security measures
-              are perfect or impenetrable, and no method of data transmission
-              can be guaranteed against any interception or other type of
-              misuse.
+              The application source does not include a user account database.
+              Transport security and request logging depend on the deployment
+              and hosting provider. External services control their own systems.
             </p>
 
             <h2 className="text-xl font-semibold mb-4 mt-8">5. Contact Us</h2>

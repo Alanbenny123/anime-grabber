@@ -263,10 +263,22 @@ export function transformJikanToAnimeData(jikanAnime: JikanAnime): {
     episode?: number;
   };
 } {
+  const image = jikanAnime.images?.jpg?.large_image_url || jikanAnime.images?.jpg?.image_url;
+  let supportedImage = "/anime-placeholder.svg";
+  if (image) {
+    try {
+      const url = new URL(image);
+      if (url.protocol === "https:" && ["cdn.myanimelist.net", "m.media-amazon.com"].includes(url.hostname)) {
+        supportedImage = image;
+      }
+    } catch {
+      // Keep the local placeholder for malformed image URLs.
+    }
+  }
   return {
     id: jikanAnime.mal_id.toString(),
     title: jikanAnime.title_english || jikanAnime.title,
-    image: jikanAnime.images.jpg.large_image_url || jikanAnime.images.jpg.image_url,
+    image: supportedImage,
     type: jikanAnime.type,
     episodeNumber: jikanAnime.episodes || undefined,
     rating: jikanAnime.score || undefined,

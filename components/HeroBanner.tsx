@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+
+const FALLBACK_IMAGE = "/anime-placeholder.svg";
 
 interface HeroBannerProps {
   title: string;
@@ -20,13 +23,18 @@ export default function HeroBanner({
   type,
   rating,
 }: HeroBannerProps) {
+  const [failedImage, setFailedImage] = useState<string | null>(null);
+  const imageSource = !imageUrl || failedImage === imageUrl ? FALLBACK_IMAGE : imageUrl;
   return (
     <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src={imageUrl}
+          src={imageSource}
           alt={title}
+          onError={() => {
+            if (imageSource !== FALLBACK_IMAGE) setFailedImage(imageUrl);
+          }}
           fill
           priority
           className="object-cover"
