@@ -14,11 +14,11 @@ const questions = [
   },
   {
     question: "Where does the catalog data come from?",
-    answer: "Anime titles, genres, ratings, and streaming links come from Jikan, an API for MyAnimeList data.",
+    answer: "Anime titles, genres, ratings, and streaming links come from Tenrai's MyAnimeList catalog data.",
   },
   {
     question: "Why is a title or streaming link unavailable?",
-    answer: "Jikan may be temporarily unavailable, and streaming availability depends on the title, provider, and region.",
+    answer: "The catalog service may be temporarily unavailable, and streaming availability depends on the title, provider, and region.",
   },
 ];
 

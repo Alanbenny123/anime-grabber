@@ -1,6 +1,6 @@
 # AnimeGrabber
 
-AnimeGrabber is an anime discovery site built with Next.js. It uses Jikan and MyAnimeList data for browsing, search, title details, trailers, and streaming links. It does not host full episodes.
+AnimeGrabber is an anime discovery site built with Next.js. It uses Tenrai's MyAnimeList catalog data for browsing, search, title details, trailers, and streaming links. It does not host full episodes.
 
 ## Features
 
@@ -35,7 +35,7 @@ Run `npm run lint` and `npm run build` to check changes. The production build us
 
 - `app/`: Next.js app router pages and layouts
 - `components/`: Reusable React components
-- `lib/api/jikan.ts`: Jikan API client and data mapping
+- `lib/api/jikan.ts`: Tenrai API client and Jikan-compatible data mapping
 - `public/`: Static assets
 
 ## Contributing

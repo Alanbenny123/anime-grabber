@@ -1,20 +1,20 @@
-// Jikan API (MyAnimeList) integration
-// Documentation: https://docs.api.jikan.moe/
+// Tenrai's MyAnimeList API uses the Jikan v4 response schema.
+// Documentation: https://api.tenrai.org/documentation
 
-const JIKAN_BASE_URL = "https://api.jikan.moe/v4";
+const TENRAI_BASE_URL = "https://api.tenrai.org/v1";
 const FETCH_TIMEOUT = 8000;
 const MAX_ATTEMPTS = 3;
 const RETRY_DELAY = 500;
 
-export class JikanHttpError extends Error {
+export class AnimeApiHttpError extends Error {
   constructor(public status: number, statusText: string) {
-    super(`Jikan returned HTTP ${status}: ${statusText}`);
-    this.name = "JikanHttpError";
+    super(`Anime API returned HTTP ${status}: ${statusText}`);
+    this.name = "AnimeApiHttpError";
   }
 }
 
 function isRetryable(error: unknown): boolean {
-  if (error instanceof JikanHttpError) {
+  if (error instanceof AnimeApiHttpError) {
     return error.status === 429 || error.status >= 500;
   }
   return error instanceof Error &&
@@ -47,7 +47,7 @@ async function fetchWithRetry(
         headers: { "User-Agent": "AnimeGrabber/1.0" },
       });
       if (response.ok) return response;
-      failure = new JikanHttpError(response.status, response.statusText);
+      failure = new AnimeApiHttpError(response.status, response.statusText);
       serverDelay = retryAfterMs(response.headers.get("retry-after"));
     } catch (error) {
       failure = error;
@@ -59,7 +59,7 @@ async function fetchWithRetry(
     const delay = Math.max(RETRY_DELAY * 2 ** attempt, serverDelay);
     await new Promise((resolve) => setTimeout(resolve, delay));
   }
-  throw new Error("Jikan request failed");
+  throw new Error("Anime API request failed");
 }
 
 export interface JikanAnime {
@@ -156,12 +156,12 @@ export async function getTopAnime(
   const params = new URLSearchParams({ page: String(page), limit: "24" });
   if (options.filter) params.set("filter", options.filter);
   if (options.type) params.set("type", options.type);
-  const response = await fetchWithRetry(`${JIKAN_BASE_URL}/top/anime?${params}`);
+  const response = await fetchWithRetry(`${TENRAI_BASE_URL}/top/anime?${params}`);
   return (await response.json()) as JikanResponse<JikanAnime>;
 }
 
 export async function getAnimeGenres() {
-  const response = await fetchWithRetry(`${JIKAN_BASE_URL}/genres/anime`);
+  const response = await fetchWithRetry(`${TENRAI_BASE_URL}/genres/anime`);
   return (await response.json()) as { data: JikanGenre[] };
 }
 
@@ -169,7 +169,7 @@ export async function getAnimeGenres() {
 export async function getTopAiringAnime(page: number = 1, limit: number = 25) {
   try {
     const response = await fetchWithRetry(
-      `${JIKAN_BASE_URL}/top/anime?filter=airing&page=${page}&limit=${limit}`
+      `${TENRAI_BASE_URL}/top/anime?filter=airing&page=${page}&limit=${limit}`
     );
     return await response.json() as JikanResponse<JikanAnime>;
   } catch (error) {
@@ -182,7 +182,7 @@ export async function getTopAiringAnime(page: number = 1, limit: number = 25) {
 export async function getMostPopularAnime(page: number = 1, limit: number = 25) {
   try {
     const response = await fetchWithRetry(
-      `${JIKAN_BASE_URL}/top/anime?filter=bypopularity&page=${page}&limit=${limit}`
+      `${TENRAI_BASE_URL}/top/anime?filter=bypopularity&page=${page}&limit=${limit}`
     );
     return await response.json() as JikanResponse<JikanAnime>;
   } catch (error) {
@@ -194,7 +194,7 @@ export async function getMostPopularAnime(page: number = 1, limit: number = 25) 
 // Fetch anime by ID
 export async function getAnimeById(id: number) {
   try {
-    const response = await fetchWithRetry(`${JIKAN_BASE_URL}/anime/${id}/full`);
+    const response = await fetchWithRetry(`${TENRAI_BASE_URL}/anime/${id}/full`);
     return await response.json() as { data: JikanAnimeDetails };
   } catch (error) {
     console.error("Error fetching anime details:", error);
@@ -207,7 +207,7 @@ export async function searchAnime(query: string, page: number = 1, limit: number
   try {
     const encodedQuery = encodeURIComponent(query);
     const response = await fetchWithRetry(
-      `${JIKAN_BASE_URL}/anime?q=${encodedQuery}&page=${page}&limit=${limit}`
+      `${TENRAI_BASE_URL}/anime?q=${encodedQuery}&page=${page}&limit=${limit}`
     );
     return await response.json() as JikanResponse<JikanAnime>;
   } catch (error) {
@@ -220,7 +220,7 @@ export async function searchAnime(query: string, page: number = 1, limit: number
 export async function getAnimeByGenre(genreId: number, page: number = 1, limit: number = 25) {
   try {
     const response = await fetchWithRetry(
-      `${JIKAN_BASE_URL}/anime?genres=${genreId}&page=${page}&limit=${limit}`
+      `${TENRAI_BASE_URL}/anime?genres=${genreId}&page=${page}&limit=${limit}`
     );
     return await response.json() as JikanResponse<JikanAnime>;
   } catch (error) {
@@ -238,7 +238,7 @@ export async function getSeasonalAnime(
 ) {
   try {
     const response = await fetchWithRetry(
-      `${JIKAN_BASE_URL}/seasons/${year}/${season}?page=${page}&limit=${limit}`
+      `${TENRAI_BASE_URL}/seasons/${year}/${season}?page=${page}&limit=${limit}`
     );
     return await response.json() as JikanResponse<JikanAnime>;
   } catch (error) {
@@ -251,7 +251,7 @@ export async function getSeasonalAnime(
 export async function getAnimeEpisodes(id: number, page: number = 1) {
   try {
     const response = await fetchWithRetry(
-      `${JIKAN_BASE_URL}/anime/${id}/episodes?page=${page}`
+      `${TENRAI_BASE_URL}/anime/${id}/episodes?page=${page}`
     );
     return await response.json();
   } catch (error) {

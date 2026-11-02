@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { searchAnime, transformJikanToAnimeData } from "@/lib/api/jikan";
 import { parseListQuery, parseSearchQuery } from "@/lib/api/validation";
-import { jikanErrorResponse } from "@/lib/api/responses";
+import { animeApiErrorResponse } from "@/lib/api/responses";
 
 // GET /api/anime/search
 export async function GET(request: Request) {
@@ -26,7 +26,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("Error in /api/anime/search:", error);
-    return jikanErrorResponse(error);
+    return animeApiErrorResponse(error);
   }
 }
 

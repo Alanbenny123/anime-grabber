@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAnimeById } from "@/lib/api/jikan";
-import { jikanErrorResponse } from "@/lib/api/responses";
+import { animeApiErrorResponse } from "@/lib/api/responses";
 
 // GET /api/anime/[id]
 export async function GET(
@@ -16,7 +16,7 @@ export async function GET(
     return NextResponse.json(response.data);
   } catch (error) {
     console.error("Error in /api/anime/[id]:", error);
-    return jikanErrorResponse(error);
+    return animeApiErrorResponse(error);
   }
 }
 

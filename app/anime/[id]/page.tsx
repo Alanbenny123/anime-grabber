@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import StreamingOptions from "@/components/StreamingOptions";
-import { getAnimeById, JikanHttpError } from "@/lib/api/jikan";
+import { getAnimeById, AnimeApiHttpError } from "@/lib/api/jikan";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,7 @@ export default async function AnimeDetailsPage({ params }: { params: Promise<{ i
   try {
     anime = (await getAnimeById(id)).data;
   } catch (error) {
-    if (error instanceof JikanHttpError && error.status === 404) notFound();
+    if (error instanceof AnimeApiHttpError && error.status === 404) notFound();
     console.error(`Could not load anime ${id}:`, error);
     return (
       <main className="container mx-auto px-4 py-16 min-h-screen">

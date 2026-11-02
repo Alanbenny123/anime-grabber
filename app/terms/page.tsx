@@ -27,7 +27,7 @@ export default function TermsPage() {
 
             <h2 className="text-xl font-semibold mb-4 mt-8">1. Content</h2>
             <p className="mb-4">
-              AnimeGrabber provides anime catalog information from Jikan,
+              AnimeGrabber provides anime catalog information from Tenrai,
               available trailers, and streaming links listed by MyAnimeList.
               It does not host full episodes.
             </p>

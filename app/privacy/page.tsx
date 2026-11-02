@@ -58,7 +58,7 @@ export default function PrivacyPage() {
               3. Disclosure of Your Information
             </h2>
             <p className="mb-4">
-              The site retrieves anime metadata from Jikan. A title page may
+              The site retrieves anime metadata from Tenrai. A title page may
               embed a YouTube trailer, and an external streaming link opens the
               provider&apos;s site when you select it. Those services have their own
               privacy practices.

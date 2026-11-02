@@ -4,7 +4,7 @@ import {
   transformJikanToAnimeData,
 } from "@/lib/api/jikan";
 import { parseListQuery } from "@/lib/api/validation";
-import { jikanErrorResponse } from "@/lib/api/responses";
+import { animeApiErrorResponse } from "@/lib/api/responses";
 
 // GET /api/anime/top-airing
 export async function GET(request: Request) {
@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("Error in /api/anime/top-airing:", error);
-    return jikanErrorResponse(error);
+    return animeApiErrorResponse(error);
   }
 }
 
