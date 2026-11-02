@@ -53,13 +53,17 @@ export default function Pagination({
   };
 
   const pageNumbers = getPageNumbers();
+  const pageUrl = (page: number) => {
+    if (page === 1) return baseUrl;
+    return `${baseUrl}${baseUrl.includes("?") ? "&" : "?"}page=${page}`;
+  };
 
   return (
     <div className="mt-12 flex justify-center">
       <div className="inline-flex items-center gap-1">
         {/* Previous button */}
         <Link
-          href={currentPage > 1 ? `${baseUrl}/${currentPage - 1}` : baseUrl}
+          href={pageUrl(Math.max(1, currentPage - 1))}
           className={`px-4 py-2 rounded-l-md font-medium transition-colors ${
             currentPage === 1
               ? "bg-[#1f2937] text-gray-500 cursor-not-allowed"
@@ -79,7 +83,7 @@ export default function Pagination({
           ) : (
             <Link
               key={pageNum}
-              href={pageNum === 1 ? baseUrl : `${baseUrl}/${pageNum}`}
+              href={pageUrl(pageNum)}
               className={`px-4 py-2 font-medium transition-colors ${
                 currentPage === pageNum
                   ? "bg-blue-600 text-white"
@@ -93,7 +97,7 @@ export default function Pagination({
 
         {/* Next button */}
         <Link
-          href={`${baseUrl}/${currentPage + 1}`}
+          href={pageUrl(Math.min(totalPages, currentPage + 1))}
           className={`px-4 py-2 rounded-r-md font-medium transition-colors ${
             currentPage === totalPages
               ? "bg-[#1f2937] text-gray-500 cursor-not-allowed"

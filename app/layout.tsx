@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AnimeWeb - Watch Anime Online Free",
+  title: "AnimeGrabber - Discover Anime",
   description:
-    "Watch the best anime online for free in HD quality. Stream or download the latest episodes and movies.",
+    "Browse anime titles, ratings, genres, trailers, and streaming links.",
   icons: {
     icon: "/favicon.ico",
   },

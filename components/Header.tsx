@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import Image from "next/image";
 import { Menu, Search } from "lucide-react";
 import Sidebar from "./Sidebar";
 
@@ -17,6 +16,7 @@ export default function Header() {
             <div className="flex items-center space-x-6">
               <button
                 onClick={() => setIsSidebarOpen(true)}
+                aria-label="Open menu"
                 className="p-1 hover:bg-[#2a2a2a] rounded-lg"
               >
                 <Menu className="h-6 w-6" />
@@ -44,17 +44,19 @@ export default function Header() {
             </div>
 
             <div className="flex items-center space-x-4">
-              <div className="relative">
+              <form action="/search" method="get" className="relative">
                 <input
                   type="text"
+                  name="q"
+                  required
+                  aria-label="Search anime"
                   placeholder="Search anime..."
-                  className="w-64 px-4 py-2 rounded-full bg-[#2a2a2a] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-40 sm:w-64 px-4 py-2 pr-10 rounded-full bg-[#2a2a2a] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              </div>
-              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm font-medium transition-colors">
-                Login
-              </button>
+                <button type="submit" aria-label="Search" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+                  <Search className="h-4 w-4" />
+                </button>
+              </form>
             </div>
           </div>
         </nav>

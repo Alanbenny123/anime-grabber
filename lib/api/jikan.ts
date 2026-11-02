@@ -18,6 +18,7 @@ async function fetchWithRetry(
   try {
     const response = await fetch(url, {
       signal: controller.signal,
+      next: { revalidate: 300 },
       headers: {
         "User-Agent": "AnimeWeb/1.0",
       },
@@ -126,6 +127,27 @@ export interface JikanAnimeDetails extends JikanAnime {
   }>;
   external: Array<{ name: string; url: string }>;
   streaming: Array<{ name: string; url: string }>;
+}
+
+export interface JikanGenre {
+  mal_id: number;
+  name: string;
+}
+
+export async function getTopAnime(
+  page: number = 1,
+  options: { filter?: "airing" | "bypopularity" | "favorite"; type?: "tv" | "movie" } = {}
+) {
+  const params = new URLSearchParams({ page: String(page), limit: "24" });
+  if (options.filter) params.set("filter", options.filter);
+  if (options.type) params.set("type", options.type);
+  const response = await fetchWithRetry(`${JIKAN_BASE_URL}/top/anime?${params}`);
+  return (await response.json()) as JikanResponse<JikanAnime>;
+}
+
+export async function getAnimeGenres() {
+  const response = await fetchWithRetry(`${JIKAN_BASE_URL}/genres/anime`);
+  return (await response.json()) as { data: JikanGenre[] };
 }
 
 // Fetch top airing anime

@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FaDiscord, FaTelegram, FaReddit, FaTwitter } from "react-icons/fa";
 import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
-import AZList from "./AZList";
 
 export default function Footer() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -47,7 +45,6 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <AZList />
           {/* Bottom Section */}
           <div className="py-6">
             <div className="flex flex-wrap gap-6 text-sm mb-4">
@@ -72,8 +69,7 @@ export default function Footer() {
             </div>
             <div className="text-sm text-gray-500">
               <p className="mb-2">
-                AnimeWeb does not store any files on our server, we only linked
-                to the media which is hosted on 3rd party services.
+                AnimeGrabber provides anime metadata, trailers, and links listed by MyAnimeList.
               </p>
               <p>© AnimeWeb.to. All rights reserved.</p>
             </div>

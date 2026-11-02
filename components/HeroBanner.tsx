@@ -66,13 +66,7 @@ export default function HeroBanner({
               href={`/anime/${id}`}
               className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-medium transition-colors"
             >
-              Watch Now
-            </Link>
-            <Link
-              href={`/anime/${id}`}
-              className="bg-gray-800/80 hover:bg-gray-700/80 text-white px-6 py-3 rounded-full font-medium transition-colors"
-            >
-              Details
+              View details
             </Link>
           </div>
         </div>
