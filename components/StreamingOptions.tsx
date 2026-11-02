@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface StreamingOption {
   name: string;
   url: string;
@@ -40,6 +42,11 @@ export default function StreamingOptions({
       <a href={`https://myanimelist.net/anime/${malId}`} target="_blank" rel="noopener noreferrer" className="inline-block mt-5 text-blue-300 hover:text-blue-200 text-sm">
         View on MyAnimeList ↗
       </a>
+      <p className="mt-4 text-sm">
+        <Link href="/free-watch" className="text-blue-300 hover:text-blue-200">
+          Check free watch options →
+        </Link>
+      </p>
     </section>
   );
 }

@@ -18,6 +18,7 @@ const sections = [
   { href: "/this-season", label: "This Season" },
   { href: "/movies", label: "Movies" },
   { href: "/tv-series", label: "TV Series" },
+  { href: "/free-watch", label: "Free Watch" },
 ];
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {

@@ -40,6 +40,9 @@ export default function Header() {
                 <Link href="/tv-series" className="nav-item">
                   TV Series
                 </Link>
+                <Link href="/free-watch" className="nav-item">
+                  Free Watch
+                </Link>
               </div>
             </div>
 

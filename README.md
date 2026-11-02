@@ -7,6 +7,7 @@ AnimeGrabber is an anime discovery site built with Next.js. It uses Tenrai's MyA
 - Browse live Movies, TV Series, Most Popular, Top Airing, and seasonal lists
 - Browse anime by genre and search by title
 - View title details, trailers, and streaming links listed by MyAnimeList
+- Check official free and sample watch options in India
 - Responsive layout for mobile and desktop
 
 ## Technology Stack
