@@ -1,22 +1,23 @@
 import { NextResponse } from "next/server";
 import { searchAnime, transformJikanToAnimeData } from "@/lib/api/jikan";
+import { parseListQuery, parseSearchQuery } from "@/lib/api/validation";
+import { jikanErrorResponse } from "@/lib/api/responses";
 
 // GET /api/anime/search
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const query = searchParams.get("q");
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "25");
+    const query = parseSearchQuery(searchParams);
+    const listQuery = parseListQuery(searchParams);
 
-    if (!query) {
+    if (!query || !listQuery) {
       return NextResponse.json(
-        { error: "Query parameter 'q' is required" },
+        { error: "q must be 1–100 characters, page 1–1000, and limit 1–25" },
         { status: 400 }
       );
     }
 
-    const response = await searchAnime(query, page, limit);
+    const response = await searchAnime(query, listQuery.page, listQuery.limit);
     const transformedData = response.data.map(transformJikanToAnimeData);
 
     return NextResponse.json({
@@ -25,10 +26,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("Error in /api/anime/search:", error);
-    return NextResponse.json(
-      { error: "Failed to search anime" },
-      { status: 500 }
-    );
+    return jikanErrorResponse(error);
   }
 }
 

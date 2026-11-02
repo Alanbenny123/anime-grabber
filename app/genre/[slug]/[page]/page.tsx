@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
-export default function LegacyGenrePage({ params }: { params: { slug: string; page: string } }) {
-  redirect(`/genre/${encodeURIComponent(params.slug)}?page=${encodeURIComponent(params.page)}`);
+export default async function LegacyGenrePage({ params }: { params: Promise<{ slug: string; page: string }> }) {
+  const { slug, page } = await params;
+  redirect(`/genre/${encodeURIComponent(slug)}?page=${encodeURIComponent(page)}`);
 }

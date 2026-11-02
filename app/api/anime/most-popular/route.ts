@@ -3,15 +3,19 @@ import {
   getMostPopularAnime,
   transformJikanToAnimeData,
 } from "@/lib/api/jikan";
+import { parseListQuery } from "@/lib/api/validation";
+import { jikanErrorResponse } from "@/lib/api/responses";
 
 // GET /api/anime/most-popular
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "25");
+    const query = parseListQuery(searchParams);
+    if (!query) {
+      return NextResponse.json({ error: "page must be 1–1000 and limit must be 1–25" }, { status: 400 });
+    }
 
-    const response = await getMostPopularAnime(page, limit);
+    const response = await getMostPopularAnime(query.page, query.limit);
     const transformedData = response.data.map(transformJikanToAnimeData);
 
     return NextResponse.json({
@@ -20,10 +24,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("Error in /api/anime/most-popular:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch popular anime" },
-      { status: 500 }
-    );
+    return jikanErrorResponse(error);
   }
 }
 

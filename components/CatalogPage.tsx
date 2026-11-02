@@ -24,7 +24,7 @@ interface CatalogPageProps {
 
 export function parseCatalogPage(value?: string) {
   const page = Number(value);
-  return Number.isSafeInteger(page) && page > 0 ? page : 1;
+  return Number.isSafeInteger(page) && page > 0 && page <= 1000 ? page : 1;
 }
 
 export default async function CatalogPage({

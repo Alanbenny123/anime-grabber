@@ -7,13 +7,14 @@ const nextConfig = {
         hostname: 'm.media-amazon.com',
         pathname: '**',
       },
-    ],
-    domains: [
-      'cdn.myanimelist.net',
-      'm.media-amazon.com'
+      {
+        protocol: 'https',
+        hostname: 'cdn.myanimelist.net',
+        pathname: '**',
+      },
     ],
   },
   reactStrictMode: true,
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig

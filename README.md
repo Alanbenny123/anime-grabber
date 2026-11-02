@@ -17,6 +17,8 @@ AnimeGrabber is an anime discovery site built with Next.js. It uses Jikan and My
 
 ## Getting Started
 
+Use Node.js 20.9 or newer. Install dependencies with `npm ci` before starting the app.
+
 First, run the development server:
 
 ```bash
@@ -26,6 +28,8 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+Run `npm run lint` and `npm run build` to check changes. The production build uses Next.js's supported Webpack option.
 
 ## Project Structure
 

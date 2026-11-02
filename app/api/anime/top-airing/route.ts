@@ -1,24 +1,21 @@
 import { NextResponse } from "next/server";
 import {
   getTopAiringAnime,
-  getMostPopularAnime,
-  getAnimeById,
-  searchAnime,
-  getAnimeByGenre,
   transformJikanToAnimeData,
 } from "@/lib/api/jikan";
-
-// Rate limiting helper (Jikan has rate limits: 3 requests/second, 60 requests/minute)
-const RATE_LIMIT_DELAY = 350; // 350ms between requests
+import { parseListQuery } from "@/lib/api/validation";
+import { jikanErrorResponse } from "@/lib/api/responses";
 
 // GET /api/anime/top-airing
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "25");
+    const query = parseListQuery(searchParams);
+    if (!query) {
+      return NextResponse.json({ error: "page must be 1–1000 and limit must be 1–25" }, { status: 400 });
+    }
 
-    const response = await getTopAiringAnime(page, limit);
+    const response = await getTopAiringAnime(query.page, query.limit);
     const transformedData = response.data.map(transformJikanToAnimeData);
 
     return NextResponse.json({
@@ -27,10 +24,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("Error in /api/anime/top-airing:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch top airing anime" },
-      { status: 500 }
-    );
+    return jikanErrorResponse(error);
   }
 }
 

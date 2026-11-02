@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
-export default function LegacySeasonPage({ params }: { params: { page: string } }) {
-  redirect(`/this-season?page=${encodeURIComponent(params.page)}`);
+export default async function LegacySeasonPage({ params }: { params: Promise<{ page: string }> }) {
+  const { page } = await params;
+  redirect(`/this-season?page=${encodeURIComponent(page)}`);
 }

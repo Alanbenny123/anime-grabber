@@ -2,49 +2,64 @@
 // Documentation: https://docs.api.jikan.moe/
 
 const JIKAN_BASE_URL = "https://api.jikan.moe/v4";
-const FETCH_TIMEOUT = 30000; // 30 seconds
-const MAX_RETRIES = 3;
-const RETRY_DELAY = 1000; // 1 second base delay
+const FETCH_TIMEOUT = 8000;
+const MAX_ATTEMPTS = 3;
+const RETRY_DELAY = 500;
+
+export class JikanHttpError extends Error {
+  constructor(public status: number, statusText: string) {
+    super(`Jikan returned HTTP ${status}: ${statusText}`);
+    this.name = "JikanHttpError";
+  }
+}
+
+function isRetryable(error: unknown): boolean {
+  if (error instanceof JikanHttpError) {
+    return error.status === 429 || error.status >= 500;
+  }
+  return error instanceof Error &&
+    (error.name === "AbortError" || error instanceof TypeError ||
+      "code" in error && error.code === "UND_ERR_CONNECT_TIMEOUT");
+}
+
+function retryAfterMs(value: string | null): number {
+  if (!value) return 0;
+  const seconds = Number(value);
+  const milliseconds = Number.isFinite(seconds)
+    ? seconds * 1000
+    : Date.parse(value) - Date.now();
+  return Number.isFinite(milliseconds) ? Math.max(0, Math.min(milliseconds, 5000)) : 0;
+}
 
 // Helper function to fetch with timeout and retry
 async function fetchWithRetry(
-  url: string,
-  retries: number = MAX_RETRIES,
-  delay: number = RETRY_DELAY
+  url: string
 ): Promise<Response> {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+    let failure: unknown;
+    let serverDelay = 0;
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        next: { revalidate: 300 },
+        headers: { "User-Agent": "AnimeGrabber/1.0" },
+      });
+      if (response.ok) return response;
+      failure = new JikanHttpError(response.status, response.statusText);
+      serverDelay = retryAfterMs(response.headers.get("retry-after"));
+    } catch (error) {
+      failure = error;
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      next: { revalidate: 300 },
-      headers: {
-        "User-Agent": "AnimeWeb/1.0",
-      },
-    });
-    clearTimeout(timeoutId);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-    
-    return response;
-  } catch (error: any) {
-    clearTimeout(timeoutId);
-    
-    // If it's an abort error (timeout) or connection error, retry
-    if (
-      (error.name === "AbortError" || error.code === "UND_ERR_CONNECT_TIMEOUT") &&
-      retries > 0
-    ) {
-      console.log(`Retrying fetch (${MAX_RETRIES - retries + 1}/${MAX_RETRIES})...`);
-      await new Promise((resolve) => setTimeout(resolve, delay));
-      return fetchWithRetry(url, retries - 1, delay * 2); // Exponential backoff
-    }
-    
-    throw error;
+    if (attempt === MAX_ATTEMPTS - 1 || !isRetryable(failure)) throw failure;
+    const delay = Math.max(RETRY_DELAY * 2 ** attempt, serverDelay);
+    await new Promise((resolve) => setTimeout(resolve, delay));
   }
+  throw new Error("Jikan request failed");
 }
 
 export interface JikanAnime {

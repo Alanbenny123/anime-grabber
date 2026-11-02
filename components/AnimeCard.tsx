@@ -25,7 +25,6 @@ export default function AnimeCard({
   title,
   image,
   type,
-  episodeNumber,
   rating,
   stats,
 }: AnimeCardProps) {
